@@ -23,8 +23,9 @@ y_train = ringdata['Class'];
 X_test = ringtest.drop('Class', axis=1);
 y_test = ringtest['Class'];
 
-#svclassifier = SVC(kernel='sigmoid', gamma=2);
-svclassifier = SVC(gamma=2, C=1);
+#svclassifier = SVC(kernel='sigmoid', gamma=2);  #Sigmoid
+svclassifier = SVC(gamma=2, C=1); #RBF (The best in this type of dataset)
+
 print("Training..");
 svclassifier.fit(X_train, y_train);
 
