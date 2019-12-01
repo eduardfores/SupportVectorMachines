@@ -33,7 +33,8 @@ print("Predicting...");
 
 y_pred = svclassifier.predict(X_test);
 
-print("\nconfusion matrix")
+print(svclassifier.score(X_test,y_test));
+print("\nconfusion matrix");
 print(confusion_matrix(y_test,y_pred));
 print("\nclassification_report");
 print(classification_report(y_test,y_pred));
