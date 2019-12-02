@@ -1,11 +1,13 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#from sklearn.model_selection import train_test_split
+from pandas import DataFrame
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix
 
-#matplotlib inline
+
+data_x=[];
+data_y=[];
 
 print("Loading Data");
 ringdata = pd.read_csv("./ring-separable.csv");
@@ -32,6 +34,20 @@ svclassifier.fit(X_train, y_train);
 print("Predicting...");
 
 y_pred = svclassifier.predict(X_test);
+
+X_test=X_test.values.tolist();
+
+for item in X_test:
+	data_x.append(item[0]);
+	data_y.append(item[1]);
+
+Result ={ 'X' : data_x,
+	  'Y' : data_y,
+	  'Output' : y_pred
+}
+
+df = DataFrame(Result, columns= ['X', 'Y', 'Output'])
+export_csv = df.to_csv (r'./result_separable.csv', index = None, header=True) 
 
 print(svclassifier.score(X_test,y_test));
 print("\nconfusion matrix");
